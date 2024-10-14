@@ -1,0 +1,59 @@
+.mixmed-safety {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  .input-section {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .medication-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .medication-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    margin-bottom: 5px;
+    border-radius: 4px;
+  }
+  
+  .medication-list button {
+    background-color: #dc3545;
+    font-size: 14px;
+  }
+  
+  .medication-list button:hover {
+    background-color: #c82333;
+  }
