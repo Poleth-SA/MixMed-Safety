@@ -32,9 +32,12 @@ const About = () => {
         <h1 className="text-5xl font-bold text-center text-custom-900 mb-8">
           About Us
         </h1>
-        <div className="bg-white shadow-lg rounded-lg p-8">
+        <div className="bg-white shadow-lg rounded-lg p-8 space-y-6">
           <p className="text-custom-700 leading-relaxed">
-            Mixmed Safety is dedicated to providing accurate and reliable information about medication interactions and purposes. Our mission is to help users make informed decisions about their health and medication use. With a team of experienced healthcare professionals and cutting-edge technology, we strive to offer the most up-to-date and comprehensive medication safety information available.
+            Mixmed Safety is a web application developed as a senior capstone project aimed at providing users with easy access to information about medication interactions and their potential risks. It also offers brief descriptions of each medication's purpose, helping users make informed decisions about their health.
+          </p>
+          <p className="text-custom-700 leading-relaxed">
+            The application is built using Flask for the backend and MySQL for the database, ensuring a smooth user experience. As the sole developer, the focus was on creating a user-friendly interface that allows individuals to quickly find relevant information about their medications.
           </p>
         </div>
       </div>
