@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { InteractionResults } from '../components/InteractionResults';
-import { parseMedicationCSV, parseInteractionCSV } from '../utils/csvParser';
+import { useQuery } from '@tanstack/react-query';
+import { fetchMedications, fetchInteractions } from '../utils/api';
 import { Search, Trash2, ClipboardList, PlusCircle, X } from 'lucide-react';
+import { useToast } from '../components/ui/use-toast';
 
 const CheckInteractions = () => {
   const [medications, setMedications] = useState([]);
-  const [interactionResults, setInteractionResults] = useState(null);
-  const [allMedications, setAllMedications] = useState([]);
-  const [interactionData, setInteractionData] = useState([]);
   const [currentMedication, setCurrentMedication] = useState('');
+  const { toast } = useToast();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const medicationData = await parseMedicationCSV();
-      setAllMedications(medicationData);
-      const interactionData = await parseInteractionCSV();
-      setInteractionData(interactionData);
-    };
-    fetchData();
-  }, []);
+  const { data: allMedications } = useQuery({
+    queryKey: ['medications'],
+    queryFn: fetchMedications,
+  });
+
+  const { data: interactionData } = useQuery({
+    queryKey: ['interactions'],
+    queryFn: fetchInteractions,
+  });
 
   const addMedication = () => {
     if (currentMedication && !medications.find(med => med.name === currentMedication)) {
@@ -35,36 +35,45 @@ const CheckInteractions = () => {
 
   const clearMedications = () => {
     setMedications([]);
-    setInteractionResults(null);
   };
 
   const loadExamples = () => {
-    const exampleMeds = ['Ibuprofen', 'Aspirin', 'Paracetamol', 'Warfarin', 'Omeprazole'];
-    const randomMedications = exampleMeds
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 3)
-      .map(med => ({ id: Date.now() + Math.random(), name: med }));
-    setMedications(randomMedications);
+    if (allMedications?.length > 0) {
+      const randomMedications = allMedications
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3)
+        .map(med => ({ id: Date.now() + Math.random(), name: med.Drug_Name }));
+      setMedications(randomMedications);
+    }
   };
 
   const getInteractions = () => {
+    if (!interactionData) {
+      toast({
+        title: "Error",
+        description: "Interaction data not available",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const results = [];
     for (let i = 0; i < medications.length; i++) {
       for (let j = i + 1; j < medications.length; j++) {
         const interaction = interactionData.find(
-          int => (int.drug1 === medications[i].name && int.drug2 === medications[j].name) ||
-                 (int.drug1 === medications[j].name && int.drug2 === medications[i].name)
+          int => (int.DrugA_Name === medications[i].name && int.DrugB_Name === medications[j].name) ||
+                 (int.DrugA_Name === medications[j].name && int.DrugB_Name === medications[i].name)
         );
         if (interaction) {
           results.push({
             pair: `${medications[i].name} + ${medications[j].name}`,
-            description: interaction.interaction,
-            riskLevel: interaction.severity
+            description: interaction.Description,
+            riskLevel: interaction.Level
           });
         }
       }
     }
-    setInteractionResults(results);
+    return results;
   };
 
   return (

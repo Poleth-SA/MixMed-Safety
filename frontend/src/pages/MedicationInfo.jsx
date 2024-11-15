@@ -1,58 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SearchBar } from '../components/SearchBar';
 import { Button } from '../components/ui/button';
-import { parseMedicationCSV } from '../utils/csvParser';
 import { Search, PlusCircle } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { fetchMedicationInfo, fetchMedications } from '../utils/api';
+import { useToast } from '../components/ui/use-toast';
 
 const MedicationInfo = () => {
-  const [medication, setMedication] = useState('');
-  const [purpose, setPurpose] = useState('');
-  const [allMedications, setAllMedications] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [noResults, setNoResults] = useState(false);
+  const { toast } = useToast();
 
-  useEffect(() => {
-    const fetchMedications = async () => {
-      const data = await parseMedicationCSV();
-      setAllMedications(data);
-    };
-    fetchMedications();
-  }, []);
+  const { data: medications } = useQuery({
+    queryKey: ['medications'],
+    queryFn: fetchMedications,
+  });
 
-  const addMedication = (med) => {
-    const foundMedication = allMedications.find(
-      (m) => m.name.toLowerCase() === med.toLowerCase()
-    );
-    if (foundMedication) {
-      setMedication(foundMedication.name);
-      setPurpose(foundMedication.purpose);
-      setNoResults(false);
-    } else {
-      setMedication('');
-      setPurpose('');
-      setNoResults(true);
+  const { data: medicationInfo, refetch: refetchMedicationInfo } = useQuery({
+    queryKey: ['medicationInfo', searchTerm],
+    queryFn: () => fetchMedicationInfo(searchTerm),
+    enabled: false,
+  });
+
+  const handleSearch = async () => {
+    try {
+      await refetchMedicationInfo();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to fetch medication information",
+        variant: "destructive",
+      });
     }
   };
 
   const addRandomMedication = () => {
-    if (allMedications.length > 0) {
-      const randomIndex = Math.floor(Math.random() * allMedications.length);
-      const randomMed = allMedications[randomIndex];
-      addMedication(randomMed.name);
+    if (medications?.length > 0) {
+      const randomIndex = Math.floor(Math.random() * medications.length);
+      const randomMed = medications[randomIndex];
+      setSearchTerm(randomMed.Drug_Name);
+      handleSearch();
     }
   };
 
-  const handleSearch = () => {
-    addMedication(searchTerm);
-  };
-
   return (
-    <div className="min-h-screen bg-custom-100 py-12 px-4 sm:px-6 lg:px-8">
-      <nav className="bg-white shadow-md rounded-lg mb-8">
+    <div className="min-h-screen bg-custom-100 py-6 px-4 sm:py-12 sm:px-6 lg:px-8">
+      <nav className="bg-white shadow-md rounded-lg mb-8 overflow-x-auto">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
-            <div className="flex space-x-8">
+            <div className="flex space-x-4 sm:space-x-8">
               <Link to="/" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-custom-600 hover:text-custom-800 hover:border-custom-300">
                 Home
               </Link>
@@ -74,15 +69,15 @@ const MedicationInfo = () => {
       </nav>
 
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-5xl font-bold text-center text-custom-900 mb-8">
+        <h1 className="text-4xl sm:text-5xl font-bold text-center text-custom-900 mb-8">
           Medication Purpose
         </h1>
-        <div className="bg-white shadow-lg rounded-lg p-8 mb-6">
-          <h2 className="text-2xl font-semibold mb-4 text-custom-800">
+        <div className="bg-white shadow-lg rounded-lg p-6 sm:p-8 mb-6">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-custom-800">
             Check medication purpose:
           </h2>
-          <div className="flex items-center mb-4">
-            <div className="relative flex-grow mr-2">
+          <div className="flex flex-col sm:flex-row items-center mb-4">
+            <div className="relative flex-grow w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2">
               <input
                 type="text"
                 value={searchTerm}
@@ -92,7 +87,7 @@ const MedicationInfo = () => {
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
-            <Button onClick={handleSearch} className="bg-custom-500 text-white hover:bg-custom-600 transition-colors duration-200">
+            <Button onClick={handleSearch} className="w-full sm:w-auto bg-custom-500 text-white hover:bg-custom-600 transition-colors duration-200">
               Search Medication
             </Button>
           </div>
@@ -101,15 +96,11 @@ const MedicationInfo = () => {
             Add Random Medication
           </Button>
           
-          {noResults ? (
-            <div className="mt-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-              Sorry, we couldn't find that medication. Please try another name.
-            </div>
-          ) : medication && (
+          {medicationInfo && (
             <div className="mt-6 p-4 bg-custom-50 border border-custom-200 rounded-md shadow">
               <h3 className="text-lg font-semibold text-custom-800 mb-2">Medication Information:</h3>
-              <p><strong>Drug Name:</strong> {medication}</p>
-              <p><strong>Purpose:</strong> {purpose}</p>
+              <p><strong>Drug Name:</strong> {medicationInfo.Drug_Name}</p>
+              <p><strong>Description:</strong> {medicationInfo.Description}</p>
             </div>
           )}
         </div>
