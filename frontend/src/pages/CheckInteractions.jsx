@@ -24,7 +24,7 @@ const CheckInteractions = () => {
   });
 
   const addMedication = () => {
-    if (!currentMedication) {
+    if (!currentMedication.trim()) {
       toast({
         title: "Error",
         description: "Please enter a medication name",
@@ -33,7 +33,11 @@ const CheckInteractions = () => {
       return;
     }
 
-    if (medications.find(med => med.name.toLowerCase() === currentMedication.toLowerCase())) {
+    const medicationExists = medications.some(
+      med => med.name.toLowerCase() === currentMedication.toLowerCase()
+    );
+
+    if (medicationExists) {
       toast({
         title: "Error",
         description: "This medication is already in the list",
@@ -42,12 +46,19 @@ const CheckInteractions = () => {
       return;
     }
 
-    setMedications([...medications, { id: Date.now(), name: currentMedication }]);
+    const newMedication = {
+      id: Date.now(),
+      name: currentMedication.trim()
+    };
+
+    setMedications(prevMedications => [...prevMedications, newMedication]);
     setCurrentMedication('');
   };
 
   const removeMedication = (id) => {
-    setMedications(medications.filter(med => med.id !== id));
+    setMedications(prevMedications => 
+      prevMedications.filter(med => med.id !== id)
+    );
   };
 
   const clearMedications = () => {
@@ -59,28 +70,32 @@ const CheckInteractions = () => {
       const randomMedications = allMedications
         .sort(() => 0.5 - Math.random())
         .slice(0, 3)
-        .map(med => ({ id: Date.now() + Math.random(), name: med.Drug_Name }));
+        .map(med => ({ 
+          id: Date.now() + Math.random(), 
+          name: med.Drug_Name 
+        }));
       setMedications(randomMedications);
     }
   };
 
   const getInteractions = () => {
-    if (!interactionData) return [];
+    if (!interactionData || !Array.isArray(interactionData)) return [];
 
     const results = [];
     for (let i = 0; i < medications.length; i++) {
       for (let j = i + 1; j < medications.length; j++) {
         const interaction = interactionData.find(
-          int => (int.DrugA_Name.toLowerCase() === medications[i].name.toLowerCase() && 
-                 int.DrugB_Name.toLowerCase() === medications[j].name.toLowerCase()) ||
-                (int.DrugA_Name.toLowerCase() === medications[j].name.toLowerCase() && 
-                 int.DrugB_Name.toLowerCase() === medications[i].name.toLowerCase())
+          int => (int.DrugA_Name?.toLowerCase() === medications[i].name.toLowerCase() && 
+                 int.DrugB_Name?.toLowerCase() === medications[j].name.toLowerCase()) ||
+                (int.DrugA_Name?.toLowerCase() === medications[j].name.toLowerCase() && 
+                 int.DrugB_Name?.toLowerCase() === medications[i].name.toLowerCase())
         );
+        
         if (interaction) {
           results.push({
             pair: `${medications[i].name} + ${medications[j].name}`,
-            description: interaction.Description,
-            riskLevel: interaction.Level
+            description: interaction.Description || 'No description available',
+            riskLevel: interaction.Level || 'Unknown'
           });
         }
       }
