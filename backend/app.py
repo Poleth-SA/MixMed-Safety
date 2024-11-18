@@ -21,11 +21,32 @@ def load_interaction_data():
             print("Warning: No interaction files found in data directory")
             return pd.DataFrame()
         
+        print(f"Found interaction files: {interaction_files}")  # Debug log
+        
         dfs = []
+        expected_columns = ['DrugA_ID', 'DrugA_Name', 'DrugB_ID', 'DrugB_Name', 'Description', 'Level']
+        
         for file in interaction_files:
+            print(f"Loading file: {file}")  # Debug log
             df = pd.read_csv(f'data/{file}')
+            
+            # Verify columns match expected format
+            if not all(col in df.columns for col in expected_columns):
+                print(f"Warning: {file} does not have all expected columns: {expected_columns}")
+                print(f"Found columns: {df.columns.tolist()}")
+                continue
+                
+            print(f"Columns in {file}: {df.columns.tolist()}")  # Debug log
+            print(f"Number of rows in {file}: {len(df)}")  # Debug log
             dfs.append(df)
-        return pd.concat(dfs, ignore_index=True)
+        
+        if not dfs:
+            print("No valid interaction files were loaded")
+            return pd.DataFrame()
+            
+        final_df = pd.concat(dfs, ignore_index=True)
+        print(f"Total interactions loaded: {len(final_df)}")  # Debug log
+        return final_df
     except Exception as e:
         print(f"Error loading interaction data: {e}")
         return pd.DataFrame()
@@ -59,7 +80,10 @@ def get_medication_info(drug_name):
 def get_all_interactions():
     try:
         df = load_interaction_data()
+        if df.empty:
+            return jsonify({'error': 'No interaction data available'}), 404
         interactions = df.to_dict('records')
+        print(f"Sending {len(interactions)} interactions")  # Debug log
         return jsonify(interactions)
     except Exception as e:
         return jsonify({'error': str(e)}), 500

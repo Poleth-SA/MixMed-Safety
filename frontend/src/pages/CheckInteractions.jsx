@@ -11,6 +11,7 @@ import { MedicationInputForm } from '../components/MedicationInputForm';
 const CheckInteractions = () => {
   const [medications, setMedications] = useState([]);
   const [currentMedication, setCurrentMedication] = useState('');
+  const [showResults, setShowResults] = useState(false);
   const { toast } = useToast();
 
   const { data: allMedications } = useQuery({
@@ -63,32 +64,36 @@ const CheckInteractions = () => {
 
   const clearMedications = () => {
     setMedications([]);
+    setShowResults(false);
   };
 
   const loadExamples = () => {
-    if (allMedications?.length > 0) {
-      const randomMedications = allMedications
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 3)
-        .map(med => ({ 
-          id: Date.now() + Math.random(), 
-          name: med.Drug_Name 
-        }));
-      setMedications(randomMedications);
-    }
+    const exampleMedications = [
+      { id: Date.now(), name: 'Abacavir' },
+      { id: Date.now() + 1, name: 'Orlista' }
+    ];
+    setMedications(exampleMedications);
+    setShowResults(false);
   };
 
   const getInteractions = () => {
-    if (!interactionData || !Array.isArray(interactionData)) return [];
+    if (!interactionData || !Array.isArray(interactionData)) {
+      console.log('No interaction data available:', interactionData);
+      return [];
+    }
 
     const results = [];
     for (let i = 0; i < medications.length; i++) {
       for (let j = i + 1; j < medications.length; j++) {
         const interaction = interactionData.find(
-          int => (int.DrugA_Name?.toLowerCase() === medications[i].name.toLowerCase() && 
-                 int.DrugB_Name?.toLowerCase() === medications[j].name.toLowerCase()) ||
-                (int.DrugA_Name?.toLowerCase() === medications[j].name.toLowerCase() && 
-                 int.DrugB_Name?.toLowerCase() === medications[i].name.toLowerCase())
+          int => {
+            const drugAMatch = int.DrugA_Name?.toLowerCase() === medications[i].name.toLowerCase();
+            const drugBMatch = int.DrugB_Name?.toLowerCase() === medications[j].name.toLowerCase();
+            const reverseDrugAMatch = int.DrugA_Name?.toLowerCase() === medications[j].name.toLowerCase();
+            const reverseDrugBMatch = int.DrugB_Name?.toLowerCase() === medications[i].name.toLowerCase();
+            
+            return (drugAMatch && drugBMatch) || (reverseDrugAMatch && reverseDrugBMatch);
+          }
         );
         
         if (interaction) {
@@ -100,10 +105,9 @@ const CheckInteractions = () => {
         }
       }
     }
+    console.log('Interaction results:', results);
     return results;
   };
-
-  const interactionResults = getInteractions();
 
   const handleCheckInteractions = () => {
     if (medications.length < 2) {
@@ -122,7 +126,10 @@ const CheckInteractions = () => {
         description: "No known interactions found between these medications",
       });
     }
+    setShowResults(true);
   };
+
+  const interactionResults = getInteractions();
 
   return (
     <div className="min-h-screen bg-custom-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -165,7 +172,9 @@ const CheckInteractions = () => {
             </Button>
           </div>
         </div>
-        {interactionResults.length > 0 && <InteractionResults results={interactionResults} />}
+        {showResults && interactionResults.length > 0 && (
+          <InteractionResults results={interactionResults} />
+        )}
         <div className="bg-white shadow-lg rounded-lg p-8 mt-6">
           <p className="text-sm text-custom-600">
             <strong>Note:</strong> The results of prescription checking are based on the current knowledge and some
