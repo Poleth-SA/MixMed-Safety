@@ -1,116 +1,116 @@
 ﻿Drug_ID,Drug_Name,Description
 DD1,Abacavir,Used along with other medications to treat human immunodeficiency virus (HIV) infection
-DD2,Abaloparatide,
-DD3,Abametapir (topical),
-DD4,Abarelix,
-DD5,Abatacept,
-DD6,Abciximab,
-DD7,Abemaciclib,
-DD8,Abiraterone,
-DD9,Acalabrutinib,
-DD10,Acamprosate,
-DD11,Acarbose,
-DD12,Acebutolol,
-DD13,Acenocoumarol,
-DD14,Acetaminophen,
-DD15,Acetazolamide,
-DD16,Acetohexamide,
-DD17,Acetoohydroxamic acid,
-DD18,Acetylcholine,
-DD19,Acetylcysteine,
-DD20,Acetylsalicylic acid,
-DD21,Acitretin,
-DD22,Aclidinium,
-DD23,Acrivastine,
-DD24,Activated charcoal,
-DD25,Acyclovir,
-DD26,Acyclovir (topical),
-DD27,Adalimumab,
-DD28,Adapalene,
-DD29,Adapalene (topical),
-DD30,Adefovir dipivoxil,
-DD31,Adenosine,
-DD32,Afatinib,
-DD33,Aflibercept,
-DD34,Agalsidase beta,
-DD35,Albendazole,
-DD36,Albiglutide,
-DD37,Alclometasone (topical),
-DD38,Aldesleukin,
-DD39,Alectinib,
-DD40,Alefacept,
-DD41,Alemtuzumab,
-DD42,Alendronic acid,
-DD43,Alfentanil,
-DD44,Alfuzosin,
-DD45,Alimemazine,
-DD46,Aliskiren,
-DD47,Alitretinoin (topical),
-DD48,Allopurinol,
-DD49,Almotriptan,
-DD50,Aloe Vera Leaf,
-DD51,Alogliptin,
-DD52,Alosetron,
-DD53,Alpelisib,
-DD54,Alprazolam,
-DD55,Alprostadil,
-DD56,Alteplase,
-DD57,Altretamine,
-DD58,Aluminum hydroxide,
-DD59,Alvimopan,
-DD60,Amantadine,
-DD61,Ambenonium,
-DD62,Ambrisentan,
-DD63,Amcinonide,
-DD64,Amifampridine,
-DD65,Amifostine,
-DD66,Amikacin,
-DD67,Amikacin (liposome),
-DD68,Amiloride,
-DD69,Aminobenzoic acid,
-DD70,Aminocaproic acid,
-DD71,Aminoglutethimide,
-DD72,Aminolevulinic acid,
-DD73,Aminolevulinic acid (topical),
-DD74,Aminophylline,
-DD75,Aminosalicylic acid,
-DD76,Amiodarone,
-DD77,Amisulpride,
-DD78,Amitriptyline,
-DD79,Amlodipine,
-DD80,Ammonium chloride,
-DD81,Amobarbital,
-DD82,Amoxapine,
-DD83,Amoxapine,
-DD84,Amphetamine,
-DD85,Amphotericin B,
-DD86,Amphotericin B (cholesteryl sulfate),
-DD87,Amphotericin B (lipid complex),
-DD88,Amphotericin B (liposomal),
-DD89,Ampicillin,
-DD90,Amprenavir,
-DD91,Amrinone,
-DD92,Amyl Nitrite,
-DD93,Anagrelide,
-DD94,Anakinra,
-DD95,Anastrozole,
-DD96,Angiotensin II,
-DD97,Anidulafungin
-DD98,Anisindione
-DD99,Anistreplase
-DD100,Anthrax vaccine
-DD101,Anti-inhibitor coagulant complex
-DD102,Antihemophilic factor human recombinant
-DD103,Antilymphocyte immunoglobulin (horse)
-DD104,Antithrombin Alfa
-DD105,Antithrombin III human
-DD106,Antithymocyte immunoglobulin (rabbit)
-DD107,Apalutamide
-DD108,Apixaban
-DD109,Apomorphine
-DD110,Apraclonidine
-DD111,Apremilast
-DD112,Aprepitant
+DD2,Abaloparatide,Abaloparatide is a parathyroid hormone-related protein (PTHrP) analog used for the treatment of osteoporosis in postmenopausal women with a high risk of fracture. 
+DD3,Abametapir (topical),A pediculicide metalloproteinase used topically in the treatment of head lice infection. 
+DD4,Abarelix,Was a drug made up of 10 amino acids (a decapeptide) that blocked a hormone responsible for reproductive function. The company Praecis Pharmaceuticals sold it until they chose to stop making it in June 2006.
+DD5,Abatacept,Helps reduce joint pain and damage in both adults and children with severe arthritis by controlling inflammation in the body.
+DD6,Abciximab,Helps prevent blood clots from forming during certain heart procedures like angioplasty (when doctors open blocked arteries).
+DD7,Abemaciclib,Used to treat HR+ HER2- advanced or metastatic breast cancer. 
+DD8,Abiraterone,An antiandrogen used in the treatment of prostate cancer. 
+DD9,Acalabrutinib,A Bruton tyrosine kinase inhibitor used to treat mantle cell lymphoma chronic lymphocytic leukemia and small lymphocytic lymphoma.
+DD10,Acamprosate,A medication used to maintain alcohol abstinence in patients with alcohol dependence. 
+DD11,Acarbose,Used to manage type 2 diabetes by slowing carbohydrate digestion helping control blood sugar.
+DD12,Acebutolol,Beta-blocker used for hypertension and arrhythmias.
+DD13,Acenocoumarol,Anticoagulant for preventing blood clots.
+DD14,Acetaminophen,Relieves pain and reduces fever.
+DD15,Acetazolamide,Treats glaucoma altitude sickness and certain types of seizures.
+DD16,Acetohexamide,Oral diabetes medication for type 2 diabetes.
+DD17,Acetoohydroxamic acid,Treats urinary tract infections and urea-splitting bacteria.
+DD18,Acetylcholine,Used in eye surgeries for rapid pupil constriction.
+DD19,Acetylcysteine,Treats acetaminophen overdose and acts as a mucolytic.
+DD20,Acetylsalicylic acid,Pain relief anti-inflammatory and blood clot prevention.
+DD21,Acitretin,Treats severe psoriasis.
+DD22,Aclidinium,Used for chronic obstructive pulmonary disease (COPD).
+DD23,Acrivastine,Antihistamine for allergy relief.
+DD24,Activated charcoal,Treats poisoning by absorbing toxins in the stomach.
+DD25,Acyclovir,Antiviral for herpes simplex and shingles.
+DD26,Acyclovir (topical),Treats skin infections caused by herpes simplex virus.
+DD27,Adalimumab,Biologic for autoimmune diseases like rheumatoid arthritis.
+DD28,Adapalene,Topical retinoid for acne treatment.
+DD29,Adapalene (topical),Treats acne by preventing pimples.
+DD30,Adefovir dipivoxil,Antiviral for chronic hepatitis B.
+DD31,Adenosine,Treats certain types of irregular heartbeat.
+DD32,Afatinib,Cancer treatment for non-small cell lung cancer.
+DD33,Aflibercept,Used for macular degeneration and certain cancers.
+DD34,Agalsidase beta,Treats Fabry disease by replacing a missing enzyme.
+DD35,Albendazole,Antiparasitic for treating worm infections.
+DD36,Albiglutide,Manages type 2 diabetes by enhancing insulin secretion.
+DD37,Alclometasone (topical),Treats inflammation and itching in skin conditions.
+DD38,Aldesleukin,Immunotherapy for treating certain cancers.
+DD39,Alectinib,Treats non-small cell lung cancer.
+DD40,Alefacept,Treats moderate-to-severe chronic plaque psoriasis.
+DD41,Alemtuzumab,Treats chronic lymphocytic leukemia and multiple sclerosis.
+DD42,Alendronic acid,Prevents and treats osteoporosis.
+DD43,Alfentanil,Opioid analgesic for pain management during surgery.
+DD44,Alfuzosin,Treats enlarged prostate symptoms by relaxing bladder muscles.
+DD45,Alimemazine,Antihistamine used as a sedative or to treat itching.
+DD46,Aliskiren,Lowers blood pressure by inhibiting renin.
+DD47,Alitretinoin (topical),Treats skin lesions in AIDS-related Kaposi's sarcoma.
+DD48,Allopurinol,Reduces uric acid levels to treat gout.
+DD49,Almotriptan,Treats migraines by narrowing blood vessels.
+DD50,Aloe Vera Leaf,Used for skin conditions and minor burns.
+DD51,Alogliptin,Manages type 2 diabetes by increasing insulin production.
+DD52,Alosetron,Treats severe irritable bowel syndrome (IBS) in women.
+DD53,Alpelisib,Treats specific types of breast cancer.
+DD54,Alprazolam,Anxiolytic for treating anxiety and panic disorders.
+DD55,Alprostadil,Treats erectile dysfunction and maintains a patent ductus arteriosus.
+DD56,Alteplase,Breaks down blood clots to treat stroke and heart attack.
+DD57,Altretamine,Chemotherapy for ovarian cancer.
+DD58,Aluminum hydroxide,Antacid for heartburn and acid indigestion.
+DD59,Alvimopan,Helps restore bowel function after surgery.
+DD60,Amantadine,Antiviral and Parkinson’s disease treatment.
+DD61,Ambenonium,Treats myasthenia gravis by improving muscle strength.
+DD62,Ambrisentan,Treats pulmonary arterial hypertension.
+DD63,Amcinonide,Topical steroid for inflammation and itching.
+DD64,Amifampridine,Treats Lambert-Eaton myasthenic syndrome.
+DD65,Amifostine,Protects normal tissues during chemotherapy and radiation.
+DD66,Amikacin,Antibiotic for severe bacterial infections.
+DD67,Amikacin (liposome),Used in inhaled form for lung infections.
+DD68,Amiloride,Diuretic for heart failure and hypertension.
+DD69,Aminobenzoic acid,Sunscreen agent and vitamin supplement.
+DD70,Aminocaproic acid,Reduces bleeding by inhibiting fibrinolysis.
+DD71,Aminoglutethimide,Treats Cushing's syndrome and hormone-sensitive cancers.
+DD72,Aminolevulinic acid,Used in photodynamic therapy for actinic keratosis.
+DD73,Aminolevulinic acid (topical),Applied before phototherapy to treat skin lesions.
+DD74,Aminophylline,Bronchodilator for asthma and COPD.
+DD75,Aminosalicylic acid,Treats tuberculosis.
+DD76,Amiodarone,Antiarrhythmic for irregular heartbeats.
+DD77,Amisulpride,Antipsychotic for schizophrenia.
+DD78,Amitriptyline,Antidepressant and chronic pain reliever.
+DD79,Amlodipine,Treats high blood pressure and angina.
+DD80,Ammonium chloride,Expectorant and urinary acidifier.
+DD81,Amobarbital,Sedative and anticonvulsant.
+DD82,Amoxapine,Antidepressant for major depressive disorder.
+DD83,Amoxicillin,A widely used antibiotic that treats various bacterial infections such as ear nose throat urinary tract and skin infections.
+DD84,Amphetamine,Stimulant for ADHD and narcolepsy.
+DD85,Amphotericin B,Treats severe fungal infections.
+DD86,Amphotericin B (cholesteryl sulfate),Lipid formulation for fungal infections.
+DD87,Amphotericin B (lipid complex),Reduces side effects in fungal treatments.
+DD88,Amphotericin B (liposomal),Fewer side effects for severe fungal infections.
+DD89,Ampicillin,Broad-spectrum antibiotic.
+DD90,Amprenavir,Antiretroviral for HIV/AIDS.
+DD91,Amrinone,Treats heart failure.
+DD92,Amyl Nitrite,Used to relieve angina.
+DD93,Anagrelide,Reduces elevated platelet count in essential thrombocythemia.
+DD94,Anakinra,Treats rheumatoid arthritis by blocking interleukin-1.
+DD95,Anastrozole,Lowers estrogen levels to treat breast cancer.
+DD96,Angiotensin II,Used in vasodilatory shock.
+DD97,Anidulafungin,Antifungal for candidemia and other fungal infections.
+DD98,Anisindione,Anticoagulant for preventing blood clots.
+DD99,Anistreplase,Clot-dissolving agent for heart attacks.
+DD100,Anthrax vaccine,Prevents anthrax.
+DD101,Anti-inhibitor coagulant complex,Treats hemophilia with inhibitors.
+DD102,Antihemophilic factor human recombinant,Replaces clotting factor VIII in hemophilia.
+DD103,Antilymphocyte immunoglobulin (horse),Suppresses immune response in organ transplants.
+DD104,Antithrombin Alfa,Prevents blood clots in patients with antithrombin deficiency.
+DD105,Antithrombin III human,Prevents blood clots during surgery.
+DD106,Antithymocyte immunoglobulin (rabbit),Reduces rejection in organ transplants.
+DD107,Apalutamide,Treats non-metastatic prostate cancer.
+DD108,Apixaban,Anticoagulant for reducing blood clot risks.
+DD109,Apomorphine,Prevents nausea and vomiting from chemotherapy.
+DD110,Apraclonidine,Antiarrhythmic agent.
+DD111,Apremilast,Reduces bleeding during heart surgery.
+DD112,Aprepitant,
 DD113,Aprotinin
 DD114,Arbutamine
 DD115,Ardeparin
