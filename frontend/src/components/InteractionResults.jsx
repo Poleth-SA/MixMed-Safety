@@ -3,11 +3,15 @@ import { AlertTriangle, AlertCircle, Info } from 'lucide-react';
 
 const getRiskIcon = (riskLevel) => {
   switch (riskLevel.toLowerCase()) {
-    case 'high':
+    case 'Major':
       return <AlertTriangle className="text-red-500" />;
-    case 'moderate':
+    case 'Moderate':
       return <AlertCircle className="text-yellow-500" />;
     default:
+    case 'Minor':
+      return <AlertTriangle className="text-green-500" />;
+    case 'Unknown':
+      return <AlertTriangle className="text-gray-500" />;
       return <Info className="text-green-500" />;
   }
 };

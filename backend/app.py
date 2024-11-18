@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Load CSV files
+# Load medication data from CSV files
 def load_medication_data():
     try:
         return pd.read_csv('data/Medication.csv')
