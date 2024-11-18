@@ -16,7 +16,7 @@ def load_medication_data():
 
 def load_interaction_data():
     try:
-        interaction_files = [f for f in os.listdir('data') if f.startswith('Interaction_')]
+        interaction_files = [f for f in os.listdir('data') if f.startswith('Interaction_A.cvs','Interaction_B.cvs','Interaction_C.cvs','Interaction_D.cvs','Interaction_E.cvs','Interaction_F.cvs','Interaction_G.cvs','Interaction_H.cvs')]
         if not interaction_files:
             print("Warning: No interaction files found in data directory")
             return pd.DataFrame()
