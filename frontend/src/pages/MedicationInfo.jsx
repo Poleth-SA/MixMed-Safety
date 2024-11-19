@@ -15,19 +15,36 @@ const MedicationInfo = () => {
     queryFn: fetchMedications,
   });
 
-  const { data: medicationInfo, refetch: refetchMedicationInfo } = useQuery({
+  const { data: medicationInfo, error, refetch: refetchMedicationInfo } = useQuery({
     queryKey: ['medicationInfo', searchTerm],
     queryFn: () => fetchMedicationInfo(searchTerm),
     enabled: false,
+    retry: false,
   });
 
   const handleSearch = async () => {
+    if (!searchTerm.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter a medication name",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      await refetchMedicationInfo();
+      const result = await refetchMedicationInfo();
+      if (!result.data) {
+        toast({
+          title: "Not Found",
+          description: "Medication not found. Please try again!",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to fetch medication information",
+        description: "Failed to fetch medication information. Please try again!",
         variant: "destructive",
       });
     }

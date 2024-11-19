@@ -34,11 +34,25 @@ const CheckInteractions = () => {
       return;
     }
 
-    const medicationExists = medications.some(
+    // Check if the medication exists in the database
+    const medicationExists = allMedications?.some(
+      med => med.Drug_Name.toLowerCase() === currentMedication.toLowerCase()
+    );
+
+    if (!medicationExists) {
+      toast({
+        title: "Not Found",
+        description: "Medication not found. Please try again!",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const existingMedication = medications.some(
       med => med.name.toLowerCase() === currentMedication.toLowerCase()
     );
 
-    if (medicationExists) {
+    if (existingMedication) {
       toast({
         title: "Error",
         description: "This medication is already in the list",
