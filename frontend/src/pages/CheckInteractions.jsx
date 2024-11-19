@@ -35,8 +35,13 @@ const CheckInteractions = () => {
       return;
     }
 
+    // Log the current state for debugging
+    console.log('Current medications:', medications);
+    console.log('All medications data:', allMedications);
+    console.log('Trying to add:', currentMedication);
+
     const medicationExists = allMedications?.some(
-      med => med.Drug_Name.toLowerCase() === currentMedication.toLowerCase().trim()
+      med => med.Drug_Name.toLowerCase().trim() === currentMedication.toLowerCase().trim()
     );
 
     if (!medicationExists) {
@@ -67,6 +72,10 @@ const CheckInteractions = () => {
       return;
     }
 
+    // Log interaction check
+    console.log('Checking interactions for:', medications);
+    console.log('Interaction data:', interactionData);
+
     const results = findInteractions(medications, interactionData);
     
     if (results.length === 0) {
@@ -86,8 +95,8 @@ const CheckInteractions = () => {
   const loadExamples = () => {
     // Using actual medications from your database that have known interactions
     const exampleMedications = [
-      { id: Date.now(), name: 'Warfarin' },
-      { id: Date.now() + 1, name: 'Aspirin' }
+      { id: Date.now(), name: 'Abacavir' },
+      { id: Date.now() + 1, name: 'Orlistat' }
     ];
     setMedications(exampleMedications);
     setShowResults(false);
