@@ -769,19 +769,19 @@ DD767,Fluticasone (nasal),A nasal spray form of fluticasone used to treat nasal 
 DD768,Fluticasone (topical),A topical form of fluticasone used to treat skin conditions such as eczema and psoriasis by reducing inflammation and itching.
 DD769,Fluvastatin,A statin used to lower cholesterol and reduce the risk of heart disease by inhibiting the enzyme HMG-CoA reductase.
 DD770,Fluvoxamine,A selective serotonin reuptake inhibitor (SSRI) used to treat obsessive-compulsive disorder (OCD) and anxiety disorders.
-DD771,Folic acid,A B-vitamin essential for cell division and the production of DNA, often used to prevent neural tube defects in pregnancy.
+DD771,Folic acid,A B-vitamin essential for cell division and the production of DNA often used to prevent neural tube defects in pregnancy.
 DD772,Follitropin,A synthetic form of follicle-stimulating hormone (FSH) used in fertility treatments to stimulate the ovaries.
 DD773,Fomepizole,A medication used as an antidote to treat methanol or ethylene glycol poisoning by inhibiting alcohol dehydrogenase.
 DD774,Fomivirsen (ophthalmic),An antiviral used in eye drop form to treat cytomegalovirus (CMV) retinitis in people with weakened immune systems.
 DD775,Fondaparinux,A synthetic anticoagulant used to prevent and treat deep vein thrombosis (DVT) and pulmonary embolism (PE).
 DD776,Formoterol,A long-acting beta-agonist used to treat asthma and chronic obstructive pulmonary disease (COPD) by relaxing the airways.
-DD777,Fosamprenavir,A prodrug of amprenavir, used to treat HIV infections as part of antiretroviral therapy.
-DD778,Fosaprepitant,A medication used to prevent nausea and vomiting caused by chemotherapy, acting as a neurokinin-1 receptor antagonist.
-DD779,Foscarnet,An antiviral medication used to treat infections caused by herpes viruses, including CMV and herpes simplex virus.
+DD777,Fosamprenavir,A prodrug of amprenavir used to treat HIV infections as part of antiretroviral therapy.
+DD778,Fosaprepitant,A medication used to prevent nausea and vomiting caused by chemotherapy acting as a neurokinin-1 receptor antagonist.
+DD779,Foscarnet,An antiviral medication used to treat infections caused by herpes viruses including CMV and herpes simplex virus.
 DD780,Fosfomycin,A broad-spectrum antibiotic used to treat urinary tract infections by inhibiting bacterial cell wall synthesis.
 DD781,Fosinopril,An angiotensin-converting enzyme (ACE) inhibitor used to treat high blood pressure and heart failure.
 DD782,Fosnetupitant,A neurokinin-1 receptor antagonist used to prevent nausea and vomiting caused by chemotherapy.
-DD783,Fosphenytoin,An anticonvulsant used to prevent and treat seizures, often administered intravenously or intramuscularly.
+DD783,Fosphenytoin,An anticonvulsant used to prevent and treat seizures often administered intravenously or intramuscularly.
 DD784,Fospropofol,A sedative used in general anesthesia that works by enhancing the activity of the neurotransmitter gamma-aminobutyric acid (GABA).
 DD785,Fostamatinib,A drug used to treat chronic immune thrombocytopenic purpura (ITP) by inhibiting spleen tyrosine kinase (SYK).
 DD786,Fostemsavir,A medication used in combination with other drugs to treat HIV infection by inhibiting the virus's ability to enter cells.
@@ -795,30 +795,30 @@ DD793,Gadobutrol,A gadolinium-based contrast agent used in MRI scans for better 
 DD794,Gadodiamide,A contrast medium used during MRI procedures to enhance the imaging of soft tissues.
 DD795,Gadofosveset trisodium,A contrast agent used in MRI to enhance vascular imaging by binding to blood vessels for better visualization.
 DD796,Gadopentetic acid,A contrast agent used in MRI scans to improve the visualization of tissues and blood vessels.
-DD797,Gadoteric acid,A gadolinium-based contrast agent used in MRI to improve the clarity of images of the brain, heart, and other organs.
+DD797,Gadoteric acid,A gadolinium-based contrast agent used in MRI to improve the clarity of images of the brain heart and other organs.
 DD798,Gadoteridol,A contrast agent used in MRI to enhance the imaging of blood vessels and tissues.
 DD799,Gadoversetamide,A contrast medium used in MRI to improve image contrast in diagnostic imaging procedures.
 DD800,Gadoxetic acid,A gadolinium-based contrast agent used in liver MRI to enhance imaging of the liver and detect liver lesions.
 DD801,Galactose,A monosaccharide sugar used in metabolism and a component of lactose; used to treat galactosemia.
 DD802,Galantamine,A cholinesterase inhibitor used to treat symptoms of Alzheimer's disease by increasing acetylcholine in the brain.
-DD803,Gallium chloride Ga-67,A radioactive isotope used in diagnostic imaging to detect infections, inflammation, and tumors.
+DD803,Gallium chloride Ga-67,A radioactive isotope used in diagnostic imaging to detect infections inflammation and tumors.
 DD804,Gallium nitrate,An anticancer agent used to treat hypercalcemia of malignancy by inhibiting bone resorption and reducing calcium levels.
-DD805,gamma-Aminobutyric acid,A neurotransmitter that inhibits nerve transmission in the brain, used to treat conditions like anxiety and epilepsy.
-DD806,Ganciclovir,An antiviral medication used to treat infections caused by cytomegalovirus (CMV), especially in immunocompromised patients.
+DD805,gamma-Aminobutyric acid,A neurotransmitter that inhibits nerve transmission in the brain used to treat conditions like anxiety and epilepsy.
+DD806,Ganciclovir,An antiviral medication used to treat infections caused by cytomegalovirus (CMV) (especially in immunocompromised patients).
 DD807,Ganirelix,A gonadotropin-releasing hormone (GnRH) antagonist used in fertility treatments to prevent premature ovulation.
-DD808,Garlic,An herb used both as a food and for its medicinal properties, including its ability to reduce cholesterol and blood pressure.
-DD809,Gatifloxacin,A fluoroquinolone antibiotic used to treat bacterial infections, including respiratory and urinary tract infections.
+DD808,Garlic,An herb used both as a food and for its medicinal properties including its ability to reduce cholesterol and blood pressure.
+DD809,Gatifloxacin,A fluoroquinolone antibiotic used to treat bacterial infections including respiratory and urinary tract infections.
 DD810,Gefitinib,A tyrosine kinase inhibitor used to treat non-small cell lung cancer by inhibiting the growth of cancer cells.
-DD811,Gemcitabine,A chemotherapy drug used to treat various cancers, including lung, pancreatic, and breast cancer.
-DD812,Gemfibrozil,A fibrate medication used to lower cholesterol and triglycerides in the blood, reducing the risk of cardiovascular disease.
-DD813,Gemifloxacin,A fluoroquinolone antibiotic used to treat bacterial infections, particularly those of the respiratory tract.
+DD811,Gemcitabine,A chemotherapy drug used to treat various cancers including lung pancreatic and breast cancer.
+DD812,Gemfibrozil,A fibrate medication used to lower cholesterol and triglycerides in the blood reducing the risk of cardiovascular disease.
+DD813,Gemifloxacin,A fluoroquinolone antibiotic used to treat bacterial infections particularly those of the respiratory tract.
 DD814,Gemtuzumab ozogamicin,A monoclonal antibody used to treat acute myeloid leukemia (AML) by targeting and killing leukemia cells.
-DD815,Gentamicin,A broad-spectrum aminoglycoside antibiotic used to treat serious bacterial infections, including those of the lungs and bloodstream.
+DD815,Gentamicin,A broad-spectrum aminoglycoside antibiotic used to treat serious bacterial infections including those of the lungs and bloodstream.
 DD816,Gentamicin (topical),A topical form of gentamicin used to treat skin infections caused by susceptible bacteria.
 DD817,Gilteritinib,A targeted therapy used to treat acute myeloid leukemia (AML) by inhibiting the FLT3 mutation in cancer cells.
-DD818,Ginger,A root plant used for its medicinal properties, including treating nausea, digestive issues, and inflammation.
+DD818,Ginger,A root plant used for its medicinal properties including treating nausea digestive issues and inflammation.
 DD819,Ginkgo biloba,A herbal supplement used to improve memory and cognitive function and promote blood circulation.
-DD820,Ginseng,A root used in traditional medicine to improve energy, reduce stress, and enhance cognitive function.
+DD820,Ginseng,A root used in traditional medicine to improve energy reduce stress and enhance cognitive function.
 DD821,Givosiran,A medication used to treat acute hepatic porphyria by reducing the production of toxic porphyrin precursors.
 DD822,Glasdegib,A drug used in the treatment of chronic myeloid leukemia (CML) by inhibiting the smoothened protein in cancer cells.
 DD823,Glatiramer,A medication used to treat multiple sclerosis by modifying the immune system to prevent nerve damage.
@@ -828,13 +828,13 @@ DD826,Glipizide,A medication used to treat type 2 diabetes by increasing insulin
 DD827,Glucagon,A hormone used to treat severe hypoglycemia (low blood sugar) by increasing glucose production in the liver.
 DD828,Glucarpidase,An enzyme used to treat high levels of methotrexate in the blood by breaking down methotrexate.
 DD829,Glucosamine,A supplement used to treat osteoarthritis by supporting joint health and cartilage formation.
-DD830,Glutamic acid,An amino acid involved in protein synthesis and neurotransmission, commonly found in the central nervous system.
+DD830,Glutamic acid,An amino acid involved in protein synthesis and neurotransmission (commonly found in the central nervous system).
 DD831,Glyburide,A sulfonylurea used to treat type 2 diabetes by stimulating insulin secretion and improving insulin sensitivity.
 DD832,Glycerin,A humectant and skin moisturizer used in skincare products and as a laxative in certain forms.
 DD833,Glycerol phenylbutyrate,A medication used to treat urea cycle disorders by reducing ammonia buildup in the blood.
 DD834,Glycopyrronium,A medication used to treat chronic obstructive pulmonary disease (COPD) and excessive sweating by blocking acetylcholine.
 DD835,Glycopyrronium (topical),A topical medication used to treat excessive sweating by inhibiting sweat gland activity.
-DD836,Goldenseal,A herbal supplement used to treat infections, digestive issues, and support immune health.
+DD836,Goldenseal,A herbal supplement used to treat infections digestive issues and support immune health.
 DD837,Golimumab,A monoclonal antibody used to treat autoimmune diseases like rheumatoid arthritis by inhibiting tumor necrosis factor (TNF).
 DD838,Gonadorelin,A synthetic hormone used to treat infertility by stimulating the release of gonadotropins.
 DD839,Goserelin,A gonadotropin-releasing hormone agonist used to treat prostate cancer and endometriosis by lowering sex hormone levels.
