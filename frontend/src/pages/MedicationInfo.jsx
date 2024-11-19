@@ -16,8 +16,8 @@ const MedicationInfo = () => {
   });
 
   const { data: medicationInfo, error, refetch: refetchMedicationInfo } = useQuery({
-    queryKey: ['medicationInfo', searchTerm],
-    queryFn: () => fetchMedicationInfo(searchTerm),
+    queryKey: ['medicationInfo', searchTerm.toLowerCase()],
+    queryFn: () => fetchMedicationInfo(searchTerm.toLowerCase()),
     enabled: false,
     retry: false,
   });
@@ -56,6 +56,12 @@ const MedicationInfo = () => {
       const randomMed = medications[randomIndex];
       setSearchTerm(randomMed.Drug_Name);
       handleSearch();
+    } else {
+      toast({
+        title: "Error",
+        description: "No medications available to choose from",
+        variant: "destructive",
+      });
     }
   };
 
