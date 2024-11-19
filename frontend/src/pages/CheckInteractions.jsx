@@ -7,6 +7,7 @@ import { Search, Trash2, ClipboardList } from 'lucide-react';
 import { useToast } from '../components/ui/use-toast';
 import { InteractionNav } from '../components/InteractionNav';
 import { MedicationInputForm } from '../components/MedicationInputForm';
+import { findInteractions } from '../utils/interactionUtils';
 
 const CheckInteractions = () => {
   const [medications, setMedications] = useState([]);
@@ -34,28 +35,14 @@ const CheckInteractions = () => {
       return;
     }
 
-    // Check if the medication exists in the database
     const medicationExists = allMedications?.some(
-      med => med.Drug_Name.toLowerCase() === currentMedication.toLowerCase()
+      med => med.Drug_Name.toLowerCase() === currentMedication.toLowerCase().trim()
     );
 
     if (!medicationExists) {
       toast({
         title: "Not Found",
-        description: "Medication not found. Please try again!",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    const existingMedication = medications.some(
-      med => med.name.toLowerCase() === currentMedication.toLowerCase()
-    );
-
-    if (existingMedication) {
-      toast({
-        title: "Error",
-        description: "This medication is already in the list",
+        description: "Medication not found in database",
         variant: "destructive",
       });
       return;
@@ -66,14 +53,29 @@ const CheckInteractions = () => {
       name: currentMedication.trim()
     };
 
-    setMedications(prevMedications => [...prevMedications, newMedication]);
+    setMedications(prev => [...prev, newMedication]);
     setCurrentMedication('');
   };
 
-  const removeMedication = (id) => {
-    setMedications(prevMedications => 
-      prevMedications.filter(med => med.id !== id)
-    );
+  const handleCheckInteractions = () => {
+    if (medications.length < 2) {
+      toast({
+        title: "Error",
+        description: "Please add at least two medications",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const results = findInteractions(medications, interactionData);
+    
+    if (results.length === 0) {
+      toast({
+        title: "Info",
+        description: "No known interactions found",
+      });
+    }
+    setShowResults(true);
   };
 
   const clearMedications = () => {
@@ -82,68 +84,21 @@ const CheckInteractions = () => {
   };
 
   const loadExamples = () => {
+    // Using actual medications from your database that have known interactions
     const exampleMedications = [
-      { id: Date.now(), name: 'Abacavir' },
-      { id: Date.now() + 1, name: 'Orlista' }
+      { id: Date.now(), name: 'Warfarin' },
+      { id: Date.now() + 1, name: 'Aspirin' }
     ];
     setMedications(exampleMedications);
     setShowResults(false);
   };
 
-  const getInteractions = () => {
-    if (!interactionData || !Array.isArray(interactionData)) {
-      console.log('No interaction data available:', interactionData);
-      return [];
-    }
-
-    const results = [];
-    for (let i = 0; i < medications.length; i++) {
-      for (let j = i + 1; j < medications.length; j++) {
-        const interaction = interactionData.find(
-          int => {
-            const drugAMatch = int.DrugA_Name?.toLowerCase() === medications[i].name.toLowerCase();
-            const drugBMatch = int.DrugB_Name?.toLowerCase() === medications[j].name.toLowerCase();
-            const reverseDrugAMatch = int.DrugA_Name?.toLowerCase() === medications[j].name.toLowerCase();
-            const reverseDrugBMatch = int.DrugB_Name?.toLowerCase() === medications[i].name.toLowerCase();
-            
-            return (drugAMatch && drugBMatch) || (reverseDrugAMatch && reverseDrugBMatch);
-          }
-        );
-        
-        if (interaction) {
-          results.push({
-            pair: `${medications[i].name} + ${medications[j].name}`,
-            description: interaction.Description || 'No description available',
-            riskLevel: interaction.Level || 'Unknown'
-          });
-        }
-      }
-    }
-    console.log('Interaction results:', results);
-    return results;
+  const removeMedication = (id) => {
+    setMedications(prev => prev.filter(med => med.id !== id));
+    setShowResults(false);
   };
 
-  const handleCheckInteractions = () => {
-    if (medications.length < 2) {
-      toast({
-        title: "Error",
-        description: "Please add at least two medications to check interactions",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    const results = getInteractions();
-    if (results.length === 0) {
-      toast({
-        title: "Info",
-        description: "No known interactions found between these medications",
-      });
-    }
-    setShowResults(true);
-  };
-
-  const interactionResults = getInteractions();
+  const interactionResults = findInteractions(medications, interactionData);
 
   return (
     <div className="min-h-screen bg-custom-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -166,7 +121,7 @@ const CheckInteractions = () => {
               className="bg-custom-500 text-white hover:bg-custom-600 transition-colors duration-200"
             >
               <Search className="mr-2 h-4 w-4" />
-              Get Interactions
+              Check Interactions
             </Button>
             <Button 
               variant="outline" 
@@ -191,9 +146,9 @@ const CheckInteractions = () => {
         )}
         <div className="bg-white shadow-lg rounded-lg p-8 mt-6">
           <p className="text-sm text-custom-600">
-            <strong>Note:</strong> The results of prescription checking are based on the current knowledge and some
-            interactions that do exist may have not been identified. Information provided here is for
-            reference and researches only, not any medical advice.
+            <strong>Note:</strong> The results are based on current knowledge and some
+            interactions may not be identified. Information provided is for
+            reference only, not medical advice.
           </p>
         </div>
       </div>

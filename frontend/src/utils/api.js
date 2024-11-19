@@ -9,7 +9,8 @@ export const fetchMedications = async () => {
 };
 
 export const fetchMedicationInfo = async (drugName) => {
-  const response = await fetch(`${API_BASE_URL}/medication/${drugName}`);
+  if (!drugName) return null;
+  const response = await fetch(`${API_BASE_URL}/medication/${encodeURIComponent(drugName)}`);
   if (!response.ok) {
     throw new Error('Failed to fetch medication info');
   }

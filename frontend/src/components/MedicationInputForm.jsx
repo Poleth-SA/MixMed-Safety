@@ -1,6 +1,5 @@
 import { Button } from './ui/button';
 import { PlusCircle, X } from 'lucide-react';
-import { useToast } from './ui/use-toast';
 
 export const MedicationInputForm = ({ 
   currentMedication, 
@@ -9,6 +8,13 @@ export const MedicationInputForm = ({
   addMedication, 
   removeMedication 
 }) => {
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addMedication();
+    }
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4 text-custom-800">
@@ -19,6 +25,7 @@ export const MedicationInputForm = ({
           type="text"
           value={currentMedication}
           onChange={(e) => setCurrentMedication(e.target.value)}
+          onKeyPress={handleKeyPress}
           placeholder="Enter a medication name"
           className="flex-grow mr-2 p-2 border rounded"
         />
