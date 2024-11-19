@@ -9,7 +9,10 @@ CORS(app)
 # Load CSV files
 def load_medication_data():
     try:
-        return pd.read_csv('data/Medication.csv')
+        df = pd.read_csv('data/Medication.csv')
+        print(f"Loaded medications: {len(df)} rows")  # Debug log
+        print(f"Columns: {df.columns.tolist()}")  # Debug log
+        return df
     except FileNotFoundError:
         print("Warning: Medication.csv not found in data directory")
         return pd.DataFrame()
@@ -30,14 +33,11 @@ def load_interaction_data():
             print(f"Loading file: {file}")  # Debug log
             df = pd.read_csv(f'data/{file}')
             
-            # Verify columns match expected format
             if not all(col in df.columns for col in expected_columns):
                 print(f"Warning: {file} does not have all expected columns: {expected_columns}")
                 print(f"Found columns: {df.columns.tolist()}")
                 continue
                 
-            print(f"Columns in {file}: {df.columns.tolist()}")  # Debug log
-            print(f"Number of rows in {file}: {len(df)}")  # Debug log
             dfs.append(df)
         
         if not dfs:
@@ -63,18 +63,23 @@ def get_medications():
         medications = df.to_dict('records')
         return jsonify(medications)
     except Exception as e:
+        print(f"Error in get_medications: {e}")  # Debug log
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/medication/<drug_name>', methods=['GET'])
 def get_medication_info(drug_name):
     try:
         df = load_medication_data()
-        # Make search case-insensitive
-        medication = df[df['Drug_Name'].str.lower() == drug_name.lower()].to_dict('records')
+        print(f"Searching for drug: {drug_name}")  # Debug log
+        # Make search case-insensitive and strip whitespace
+        drug_name = drug_name.lower().strip()
+        medication = df[df['Drug_Name'].str.lower().str.strip() == drug_name].to_dict('records')
+        print(f"Found medication: {medication}")  # Debug log
         if medication:
             return jsonify(medication[0])
         return jsonify({'error': 'Medication not found'}), 404
     except Exception as e:
+        print(f"Error in get_medication_info: {e}")  # Debug log
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/interactions', methods=['GET'])
@@ -84,7 +89,6 @@ def get_all_interactions():
         if df.empty:
             return jsonify({'error': 'No interaction data available'}), 404
         interactions = df.to_dict('records')
-        print(f"Sending {len(interactions)} interactions")  # Debug log
         return jsonify(interactions)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
