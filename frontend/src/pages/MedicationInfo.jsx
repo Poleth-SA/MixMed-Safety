@@ -15,7 +15,7 @@ const MedicationInfo = () => {
     queryFn: fetchMedications,
   });
 
-  const { data: medicationInfo, error, refetch: refetchMedicationInfo } = useQuery({
+  const { data: medicationInfo, refetch: refetchMedicationInfo } = useQuery({
     queryKey: ['medicationInfo', searchTerm.toLowerCase().trim()],
     queryFn: () => fetchMedicationInfo(searchTerm.toLowerCase().trim()),
     enabled: false,

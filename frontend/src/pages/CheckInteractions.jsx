@@ -35,19 +35,28 @@ const CheckInteractions = () => {
       return;
     }
 
-    // Log the current state for debugging
-    console.log('Current medications:', medications);
-    console.log('All medications data:', allMedications);
-    console.log('Trying to add:', currentMedication);
-
-    const medicationExists = allMedications?.some(
-      med => med.Drug_Name.toLowerCase().trim() === currentMedication.toLowerCase().trim()
+    const searchTerm = currentMedication.toLowerCase().trim();
+    const medicationExists = allMedications?.some(med => 
+      med.Drug_Name.toLowerCase().trim() === searchTerm
     );
 
     if (!medicationExists) {
       toast({
         title: "Not Found",
         description: "Medication not found in database",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const isDuplicate = medications.some(
+      med => med.name.toLowerCase().trim() === searchTerm
+    );
+
+    if (isDuplicate) {
+      toast({
+        title: "Already Added",
+        description: "This medication is already in your list",
         variant: "destructive",
       });
       return;
@@ -60,6 +69,11 @@ const CheckInteractions = () => {
 
     setMedications(prev => [...prev, newMedication]);
     setCurrentMedication('');
+    
+    toast({
+      title: "Success",
+      description: "Medication added successfully",
+    });
   };
 
   const handleCheckInteractions = () => {
@@ -72,11 +86,17 @@ const CheckInteractions = () => {
       return;
     }
 
-    // Log interaction check
-    console.log('Checking interactions for:', medications);
-    console.log('Interaction data:', interactionData);
+    if (!interactionData || !Array.isArray(interactionData)) {
+      toast({
+        title: "Error",
+        description: "Unable to check interactions at this time",
+        variant: "destructive",
+      });
+      return;
+    }
 
     const results = findInteractions(medications, interactionData);
+    console.log('Interaction results:', results);
     
     if (results.length === 0) {
       toast({
@@ -93,7 +113,6 @@ const CheckInteractions = () => {
   };
 
   const loadExamples = () => {
-    // Using actual medications from your database that have known interactions
     const exampleMedications = [
       { id: Date.now(), name: 'Abacavir' },
       { id: Date.now() + 1, name: 'Orlistat' }
@@ -106,8 +125,6 @@ const CheckInteractions = () => {
     setMedications(prev => prev.filter(med => med.id !== id));
     setShowResults(false);
   };
-
-  const interactionResults = findInteractions(medications, interactionData);
 
   return (
     <div className="min-h-screen bg-custom-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -150,9 +167,7 @@ const CheckInteractions = () => {
             </Button>
           </div>
         </div>
-        {showResults && interactionResults.length > 0 && (
-          <InteractionResults results={interactionResults} />
-        )}
+        {showResults && <InteractionResults results={findInteractions(medications, interactionData)} />}
         <div className="bg-white shadow-lg rounded-lg p-8 mt-6">
           <p className="text-sm text-custom-600">
             <strong>Note:</strong> The results are based on current knowledge and some
