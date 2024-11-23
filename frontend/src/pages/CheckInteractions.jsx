@@ -35,22 +35,8 @@ const CheckInteractions = () => {
       return;
     }
 
-    const searchTerm = currentMedication.toLowerCase().trim();
-    const medicationExists = allMedications?.some(med => 
-      med.Drug_Name.toLowerCase().trim() === searchTerm
-    );
-
-    if (!medicationExists) {
-      toast({
-        title: "Not Found",
-        description: "Medication not found in database",
-        variant: "destructive",
-      });
-      return;
-    }
-
     const isDuplicate = medications.some(
-      med => med.name.toLowerCase().trim() === searchTerm
+      med => med.name.toLowerCase() === currentMedication.toLowerCase().trim()
     );
 
     if (isDuplicate) {
@@ -72,7 +58,7 @@ const CheckInteractions = () => {
     
     toast({
       title: "Success",
-      description: "Medication added successfully",
+      description: "Medication added to list",
     });
   };
 
@@ -86,7 +72,7 @@ const CheckInteractions = () => {
       return;
     }
 
-    if (!interactionData || !Array.isArray(interactionData)) {
+    if (!allMedications || !interactionData) {
       toast({
         title: "Error",
         description: "Unable to check interactions at this time",
@@ -95,8 +81,27 @@ const CheckInteractions = () => {
       return;
     }
 
+    // Validate medications against database
+    const invalidMeds = medications.filter(med => {
+      const searchTerm = med.name.toLowerCase().trim();
+      return !allMedications.some(dbMed => {
+        const dbMedName = dbMed.Drug_Name.toLowerCase();
+        return dbMedName === searchTerm || 
+               dbMedName.includes(searchTerm) || 
+               searchTerm.includes(dbMedName);
+      });
+    });
+
+    if (invalidMeds.length > 0) {
+      toast({
+        title: "Invalid Medications",
+        description: `The following medications are not in our database: ${invalidMeds.map(m => m.name).join(', ')}`,
+        variant: "destructive",
+      });
+      return;
+    }
+
     const results = findInteractions(medications, interactionData);
-    console.log('Interaction results:', results);
     
     if (results.length === 0) {
       toast({
