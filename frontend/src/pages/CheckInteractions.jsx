@@ -81,32 +81,15 @@ const CheckInteractions = () => {
       return;
     }
 
-    // Validate medications against database
-    const invalidMeds = medications.filter(med => {
-      const searchTerm = med.name.toLowerCase().trim();
-      return !allMedications.some(dbMed => {
-        const dbMedName = dbMed.Drug_Name.toLowerCase();
-        return dbMedName === searchTerm || 
-               dbMedName.includes(searchTerm) || 
-               searchTerm.includes(dbMedName);
-      });
-    });
-
-    if (invalidMeds.length > 0) {
-      toast({
-        title: "Invalid Medications",
-        description: `The following medications are not in our database: ${invalidMeds.map(m => m.name).join(', ')}`,
-        variant: "destructive",
-      });
-      return;
-    }
+    console.log('Medications to check:', medications);
+    console.log('Available interaction data:', interactionData);
 
     const results = findInteractions(medications, interactionData);
     
     if (results.length === 0) {
       toast({
         title: "Info",
-        description: "No known interactions found",
+        description: "No known interactions found in our database",
       });
     }
     setShowResults(true);

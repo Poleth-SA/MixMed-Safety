@@ -1,2 +1,17 @@
 DrugA_ID,DrugA_Name,DrugB_ID,DrugB_Name,Description,Level
 DD1,Abacavir,DD1348,Orlistat,Orlistat may theoretically reduce the gastrointestinal absorption and therapeutic efficacy of antiretroviral agents. The mechanism may involve retention of lipophilic medicines in the gastrointestinal tract or reduced gastrointestinal tract transit time., Moderate
+DD1,Abacavir,DD83,Amoxicillin,Description not available, Unknown
+DD1,Abacavir,DD826,Glipizide,Description not available, Unknown
+DD1,Abacavir,DD1622,Rosuvastatin,Description not available, Unknown
+DD1,Abacavir,DD1559,Rabeprazole,Description not available, Unknown
+DD1,Abacavir,DD1472,Pioglitazone,Description not available, Unknown
+DD1,Abacavir,DD393,Clarithromycin,Description not available, Unknown
+DD1,Abacavir,DD246,Budesonide,Description not available, Unknown
+DD1,Abacavir,DD1197,Metoclopramide,Description not available, Unknown
+DD1,Abacavir,DD513,Dexamethasone,Description not available, Unknown
+DD1,Abacavir,DD1906,Ursodeoxycholic acid,Description not available, Unknown
+DD1,Abacavir,DD252,Bupropion,Description not available, Unknown
+DD10,Acamprosate,DD1263,Naltrexone,Description not available, Unknown
+DD10,Acamprosate,DD1568,Ranitidine,Description not available, Unknown
+DD10,Acamprosate,DD252,Bupropion,Description not available, Unknown
+DD10,Acamprosate,DD246,Budesonide,Description not available, Unknown
