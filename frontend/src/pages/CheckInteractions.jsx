@@ -160,7 +160,7 @@ const CheckInteractions = () => {
           <p className="text-sm text-custom-600">
             <strong>Note:</strong> The results are based on current knowledge and some
             interactions may not be identified. Information provided is for
-            reference only, not medical advice.
+            reference only, not medical advice. Always check with a healthcare professional.
           </p>
         </div>
       </div>
