@@ -50,13 +50,13 @@ const HowItWorks = () => {
               <div className="flex items-start space-x-3">
                 <Search className="w-5 h-5 text-custom-500 mt-1" />
                 <p className="text-custom-700">
-                  <strong>Medication Search:</strong> One can search for any medication by name and description to get an overview of its typical uses.
+                  <strong>Medication Search:</strong> One can search for any medication by name and will receive description about the medication to get an overview of its typical uses.
                 </p>
               </div>
               <div className="flex items-start space-x-3">
                 <AlertTriangle className="w-5 h-5 text-custom-500 mt-1" />
                 <p className="text-custom-700">
-                  <strong>Check Interactions:</strong> Search two medications to see known interactions; their severity is Major, Moderate, Minor, or Unknown.
+                  <strong>Check Interactions:</strong> Search two medications to see known interactions; their severity is Major, Moderate, Minor, or Neutral.
                 </p>
               </div>
             </div>
@@ -67,19 +67,19 @@ const HowItWorks = () => {
             <div className="space-y-4">
               <div className="p-4 bg-red-50 rounded-md">
                 <p className="font-semibold text-red-700">Major:</p>
-                <p className="text-red-600">The interactions are life-threatening and/or require medical treatment or intervention to minimize or prevent severe adverse effects.</p>
+                <p className="text-red-600">Avoid combining these medications because the risks are greater than the benefits.</p>
               </div>
               <div className="p-4 bg-yellow-50 rounded-md">
                 <p className="font-semibold text-yellow-700">Moderate:</p>
-                <p className="text-yellow-600">The interactions may result in exacerbation of the disease of the patient and/or change in therapy.</p>
+                <p className="text-yellow-600">Use caution when combining these medications, only under specific circumstances.</p>
               </div>
               <div className="p-4 bg-green-50 rounded-md">
                 <p className="font-semibold text-green-700">Minor:</p>
-                <p className="text-green-600">The interactions would lessen the clinical effects. The manifestations may include a rise in frequency or intensity of adverse effects, but usually they do not need changes in therapy.</p>
+                <p className="text-green-600">These medications may have a small risk when combined; consider alternatives or monitor closely..</p>
               </div>
               <div className="p-4 bg-gray-50 rounded-md">
-                <p className="font-semibold text-gray-700">Unknown:</p>
-                <p className="text-gray-600">The DDIs gathered from the article published in Sci Transl Med were lack of mechanism descriptions, and hence the severity classifications of these DDIs were annotated with 'Unknown'.</p>
+                <p className="font-semibold text-gray-700">Neutral:</p>
+                <p className="text-gray-600">There are no known interactions or side effects between these medications.</p>
               </div>
             </div>
           </section>
@@ -89,7 +89,7 @@ const HowItWorks = () => {
             <div className="flex items-start space-x-3">
               <Database className="w-5 h-5 text-custom-500 mt-1" />
               <p className="text-custom-700">
-                Mixmed Safety information is derived from valued medical sources including DRUGDEX and Sci Transl Med. 
+                Mixmed Safety information is derived from valued medical sources including Drugs.com, DRUGDEX and Sci Transl Med. 
                 While we update our content to keep in step with current facts, the delivery of medical care is the 
                 prerogative and responsibility of the health professional.
               </p>

@@ -101,12 +101,32 @@ const CheckInteractions = () => {
   };
 
   const loadExamples = () => {
-    const exampleMedications = [
-      { id: Date.now(), name: 'Abacavir' },
-      { id: Date.now() + 1, name: 'Orlistat' }
-    ];
-    setMedications(exampleMedications);
+    if (!interactionData || !Array.isArray(interactionData)) {
+      toast({
+        title: "Error",
+        description: "Unable to load example medications",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const uniqueDrugNames = [...new Set(interactionData.map(item => item.DrugB_Name))];
+    
+    const randomDrugs = uniqueDrugNames
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 5)
+      .map(name => ({
+        id: Date.now() + Math.random(),
+        name: name
+      }));
+
+    setMedications(randomDrugs);
     setShowResults(false);
+    
+    toast({
+      title: "Success",
+      description: "Loaded 5 random medications",
+    });
   };
 
   const removeMedication = (id) => {
@@ -160,7 +180,7 @@ const CheckInteractions = () => {
           <p className="text-sm text-custom-600">
             <strong>Note:</strong> The results are based on current knowledge and some
             interactions may not be identified. Information provided is for
-            reference only, not medical advice. Always check with a healthcare professional.
+            reference only, not medical advice.
           </p>
         </div>
       </div>

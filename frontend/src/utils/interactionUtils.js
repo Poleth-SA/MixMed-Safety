@@ -17,6 +17,8 @@ export const findInteractions = (medications, interactionData) => {
   });
 
   const results = [];
+  const noInteractionPairs = [];
+
   for (let i = 0; i < medications.length; i++) {
     for (let j = i + 1; j < medications.length; j++) {
       const drugA = medications[i].name.toLowerCase().trim();
@@ -45,18 +47,6 @@ export const findInteractions = (medications, interactionData) => {
         const drugAName = int.DrugA_Name.toLowerCase().trim();
         const drugBName = int.DrugB_Name.toLowerCase().trim();
 
-        // Log exact comparison values for first few checks
-        if (i === 0) {
-          console.log('Comparing:', {
-            input: { drugA, drugB },
-            database: { drugAName, drugBName },
-            matches: {
-              forward: drugAName === drugA && drugBName === drugB,
-              reverse: drugAName === drugB && drugBName === drugA
-            }
-          });
-        }
-
         return (drugAName === drugA && drugBName === drugB) ||
                (drugAName === drugB && drugBName === drugA);
       });
@@ -68,10 +58,16 @@ export const findInteractions = (medications, interactionData) => {
           description: interaction.Description || 'No description available',
           riskLevel: interaction.Level || 'Unknown'
         });
+      } else {
+        noInteractionPairs.push({
+          pair: `${medications[i].name} + ${medications[j].name}`,
+          description: 'No interaction data available for this combination',
+          riskLevel: 'unknown'
+        });
       }
     }
   }
 
-  console.log('Final results:', results);
-  return results;
+  console.log('Final results:', [...results, ...noInteractionPairs]);
+  return [...results, ...noInteractionPairs];
 };
