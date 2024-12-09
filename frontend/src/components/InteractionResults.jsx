@@ -2,35 +2,35 @@ import React from 'react';
 import { AlertTriangle, AlertCircle, Info, HelpCircle } from 'lucide-react';
 
 const getRiskIcon = (riskLevel) => {
-  const riskLowerCase = riskLevel.toLowerCase();
+  const riskLowerCase = riskLevel?.toLowerCase() || 'unknown';
   switch (riskLowerCase) {
     case 'major':
       return <AlertTriangle className="text-red-500" />;
     case 'moderate':
       return <AlertTriangle className="text-yellow-500" />;
     case 'minor':
+      return <Info className="text-blue-500" />;
+    case 'neutral':
       return <Info className="text-green-500" />;
-    case 'unknown':
-      return <HelpCircle className="text-gray-400" />;
     default:
-      return <Info className="text-gray-500" />;
+      return <HelpCircle className="text-gray-500" />;
   }
 };
 
 export const InteractionResults = ({ results }) => {
   const getRiskColor = (riskLevel) => {
-    const riskLowerCase = riskLevel.toLowerCase();
+    const riskLowerCase = riskLevel?.toLowerCase() || 'unknown';
     switch (riskLowerCase) {
       case 'major':
-        return 'text-red-500';
+        return 'text-red-500 font-semibold';
       case 'moderate':
-        return 'text-yellow-500';
+        return 'text-yellow-500 font-semibold';
       case 'minor':
-        return 'text-green-500';
-      case 'unknown':
-        return 'text-gray-400';
+        return 'text-blue-500 font-semibold';
+      case 'neutral':
+        return 'text-green-500 font-semibold';
       default:
-        return 'text-gray-500';
+        return 'text-gray-500 italic';
     }
   };
 

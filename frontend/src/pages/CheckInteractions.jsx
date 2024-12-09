@@ -98,6 +98,10 @@ const CheckInteractions = () => {
   const clearMedications = () => {
     setMedications([]);
     setShowResults(false);
+    toast({
+      title: "Success",
+      description: "All medications cleared",
+    });
   };
 
   const loadExamples = () => {
@@ -112,6 +116,7 @@ const CheckInteractions = () => {
 
     const uniqueDrugNames = [...new Set(interactionData.map(item => item.DrugB_Name))];
     
+    // 5 random medications from the list
     const randomDrugs = uniqueDrugNames
       .sort(() => Math.random() - 0.5)
       .slice(0, 5)
@@ -132,6 +137,10 @@ const CheckInteractions = () => {
   const removeMedication = (id) => {
     setMedications(prev => prev.filter(med => med.id !== id));
     setShowResults(false);
+    toast({
+      title: "Success",
+      description: "Medication removed",
+    });
   };
 
   return (

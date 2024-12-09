@@ -1,5 +1,10 @@
 export const findInteractions = (medications, interactionData) => {
-  // Initial validation with detailed logging
+  console.log('Raw interaction data:', {
+    firstFewRecords: interactionData?.slice(0, 3),
+    totalRecords: interactionData?.length,
+    sampleMedications: medications
+  });
+
   if (!interactionData || !Array.isArray(interactionData) || !medications || medications.length < 2) {
     console.log('Invalid input data:', { 
       hasInteractionData: !!interactionData,
