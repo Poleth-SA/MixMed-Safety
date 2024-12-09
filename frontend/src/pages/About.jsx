@@ -37,7 +37,7 @@ const About = () => {
             Mixmed Safety is a web application developed as a senior capstone project aimed at providing users with easy access to information about medication interactions and their potential risks. It also offers brief descriptions of each medication's purpose, helping users make informed decisions about their health.
           </p>
           <p className="text-custom-700 leading-relaxed">
-            The application is built using Flask for the backend and MySQL for the database, ensuring a smooth user experience. As the sole developer, the focus was on creating a user-friendly interface that allows individuals to quickly find relevant information about their medications.
+            The application is built using Flask for the backend and cvs files for the database, ensuring a smooth user experience. As the sole developer, the focus was on creating a user-friendly interface that allows individuals to quickly find relevant information about their medications.
           </p>
         </div>
       </div>

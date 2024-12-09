@@ -67,19 +67,19 @@ const HowItWorks = () => {
             <div className="space-y-4">
               <div className="p-4 bg-red-50 rounded-md">
                 <p className="font-semibold text-red-700">Major:</p>
-                <p className="text-red-600">Avoid combining these medications because the risks are greater than the benefits.</p>
+                <p className="text-red-600">Avoid combining these medications because the risks are high, even deadly. Contact your doctor or any professional before Proceeding.</p>
               </div>
               <div className="p-4 bg-yellow-50 rounded-md">
                 <p className="font-semibold text-yellow-700">Moderate:</p>
-                <p className="text-yellow-600">Use caution when combining these medications, only under specific circumstances.</p>
+                <p className="text-yellow-600">Use caution when combining these medications, There's side effects but not severe dangerous ones.</p>
               </div>
               <div className="p-4 bg-green-50 rounded-md">
                 <p className="font-semibold text-green-700">Minor:</p>
-                <p className="text-green-600">These medications may have a small risk when combined; consider alternatives or monitor closely..</p>
+                <p className="text-green-600">These medications may have a small risk when combined. The risk are low to none to occur.</p>
               </div>
-              <div className="p-4 bg-gray-50 rounded-md">
-                <p className="font-semibold text-gray-700">Neutral:</p>
-                <p className="text-gray-600">There are no known interactions or side effects between these medications.</p>
+              <div className="p-4 bg-blue-50 rounded-md">
+                <p className="font-semibold text-blue-500">Neutral:</p>
+                <p className="text-blue-400">There are no interactions or side effects between these medications.</p>
               </div>
             </div>
           </section>
@@ -89,20 +89,7 @@ const HowItWorks = () => {
             <div className="flex items-start space-x-3">
               <Database className="w-5 h-5 text-custom-500 mt-1" />
               <p className="text-custom-700">
-                Mixmed Safety information is derived from valued medical sources including Drugs.com, DRUGDEX and Sci Transl Med. 
-                While we update our content to keep in step with current facts, the delivery of medical care is the 
-                prerogative and responsibility of the health professional.
-              </p>
-            </div>
-          </section>
-
-          <section className="bg-white shadow-lg rounded-lg p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold text-custom-800 mb-4">Data Privacy</h2>
-            <div className="flex items-start space-x-3">
-              <Shield className="w-5 h-5 text-custom-500 mt-1" />
-              <p className="text-custom-700">
-                We value our user's privacy and do not solicit personal information in order to grant access to 
-                medication interaction data.
+              Mixmed Safety information is derived from valuable medical sources, including FDA@DRUGS ,Drugs.com, DRUGDEX, and Sci Transl Med. These websites provided crucial information for our project, which reflects the latest medical research. It is important to note that while our content is informed by these sources, the responsibility for medical care ultimately lies with the health professional.
               </p>
             </div>
           </section>
