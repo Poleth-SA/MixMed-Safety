@@ -37,12 +37,22 @@ export const fetchInteractions = async () => {
     if (!response.ok) {
       throw new Error(`Failed to fetch interactions: ${response.status}`);
     }
-    const data = await response.json();
-    console.log('Fetched interactions:', {
-      total: data.length,
-      sample: data.slice(0, 3)
-    });
-    return data;
+    const text = await response.text(); // Get raw response text first
+    
+    try {
+      const data = JSON.parse(text); // Try to parse JSON
+      console.log('Fetched interactions:', {
+        total: data.length,
+        sample: data.slice(0, 3)
+      });
+      return data;
+    } catch (parseError) {
+      console.error('JSON Parse Error:', {
+        error: parseError,
+        responseText: text.slice(0, 200) + '...' // Log first 200 chars
+      });
+      throw new Error(`Invalid JSON response: ${parseError.message}`);
+    }
   } catch (error) {
     console.error('Error fetching interactions:', error);
     throw error;

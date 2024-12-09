@@ -103,9 +103,47 @@ def get_all_interactions():
         df = load_interaction_data()
         if df.empty:
             return jsonify({'error': 'No interaction data available'}), 404
+            
+        # Clean the data before converting to JSON
+        df = df.replace({
+            'Description': {
+                r'\n': ' ',  # Replace newlines with spaces
+                r'\r': ' ',  # Replace carriage returns with spaces
+                r'\.\.\..*$': '...'  # Replace truncated text with ...
+            }
+        }, regex=True)
+        
+        # Convert NaN/None values to empty strings
+        df = df.fillna('')
+        
+        # Ensure all text fields are properly stripped
+        text_columns = ['DrugA_Name', 'DrugB_Name', 'Description', 'Level']
+        for col in text_columns:
+            if col in df.columns:
+                df[col] = df[col].astype(str).str.strip()
+        
+        # Convert to records and ensure all values are JSON serializable
         interactions = df.to_dict('records')
-        return jsonify(interactions)
+        
+        # Additional cleaning of the records
+        clean_interactions = []
+        for interaction in interactions:
+            clean_interaction = {}
+            for key, value in interaction.items():
+                # Convert any problematic values to strings
+                if isinstance(value, (float, int)):
+                    clean_interaction[key] = str(value)
+                else:
+                    # Remove any non-ASCII characters and clean the string
+                    clean_interaction[key] = (str(value)
+                        .encode('ascii', errors='ignore')
+                        .decode()
+                        .strip())
+            clean_interactions.append(clean_interaction)
+            
+        return jsonify(clean_interactions)
     except Exception as e:
+        print(f"Error in get_all_interactions: {e}")  # Debug log
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
