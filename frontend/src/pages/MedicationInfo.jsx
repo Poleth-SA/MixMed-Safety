@@ -4,11 +4,19 @@ import { Button } from '../components/ui/button';
 import { Search, PlusCircle } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchMedicationInfo, fetchMedications } from '../utils/api';
-import { useToast } from '../components/ui/use-toast';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+} from "../components/ui/alert-dialog";
 
 const MedicationInfo = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { toast } = useToast();
+  const [isErrorDialogOpen, setIsErrorDialogOpen] = useState(false);
 
   const { data: medications } = useQuery({
     queryKey: ['medications'],
@@ -24,29 +32,17 @@ const MedicationInfo = () => {
 
   const handleSearch = async () => {
     if (!searchTerm.trim()) {
-      toast({
-        title: "Error",
-        description: "Please enter a medication name",
-        variant: "destructive",
-      });
+      setIsErrorDialogOpen(true);
       return;
     }
 
     try {
       const result = await refetchMedicationInfo();
       if (!result.data) {
-        toast({
-          title: "Not Found",
-          description: "Medication not found. Please try again!",
-          variant: "destructive",
-        });
+        setIsErrorDialogOpen(true);
       }
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to fetch medication information. Please try again!",
-        variant: "destructive",
-      });
+      setIsErrorDialogOpen(true);
     }
   };
 
@@ -55,13 +51,10 @@ const MedicationInfo = () => {
       const randomIndex = Math.floor(Math.random() * medications.length);
       const randomMed = medications[randomIndex];
       setSearchTerm(randomMed.Drug_Name);
-      handleSearch();
+      // Instead of calling handleSearch directly, just set the search term
+      // The user can then click the search button to perform the search
     } else {
-      toast({
-        title: "Error",
-        description: "No medications available to choose from",
-        variant: "destructive",
-      });
+      setIsErrorDialogOpen(true);
     }
   };
 
@@ -128,6 +121,20 @@ const MedicationInfo = () => {
           )}
         </div>
       </div>
+
+      <AlertDialog open={isErrorDialogOpen} onOpenChange={setIsErrorDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Error: Medication Not Found</AlertDialogTitle>
+            <AlertDialogDescription>
+              The medication you provided is either misspelled or not present in the database.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>OK</AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
