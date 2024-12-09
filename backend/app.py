@@ -51,11 +51,24 @@ def load_interaction_data():
         print(f"Error loading interaction data: {e}")
         return pd.DataFrame()
 
-def validate_medication(drug_name):
+def validate_medication_info(drug_name):
     df = load_medication_data()
     if df.empty:
         return False
-    return drug_name.lower().strip() in df['Drug_Name'].str.lower().str.strip().values
+    # Make search case-insensitive and strip whitespace
+    drug_exists = drug_name.lower().strip() in df['Drug_Name'].str.lower().str.strip().values
+    return drug_exists
+
+def validate_interaction_medication(drug_name):
+    df = load_interaction_data()
+    if df.empty:
+        return False
+    # Check if the drug exists in either DrugA_Name or DrugB_Name columns
+    drug_exists = (
+        drug_name.lower().strip() in df['DrugA_Name'].str.lower().str.strip().values or
+        drug_name.lower().strip() in df['DrugB_Name'].str.lower().str.strip().values
+    )
+    return drug_exists
 
 @app.route('/')
 def home():
@@ -79,8 +92,8 @@ def get_medication_info(drug_name):
         # Make search case-insensitive and strip whitespace
         drug_name = drug_name.lower().strip()
         
-        # First validate if medication exists
-        if not validate_medication(drug_name):
+        # First validate if medication exists in Medication.csv
+        if not validate_medication_info(drug_name):
             return jsonify({'error': 'Invalid medication name'}), 404
             
         medication = df[df['Drug_Name'].str.lower().str.strip() == drug_name].to_dict('records')
@@ -94,7 +107,8 @@ def get_medication_info(drug_name):
 
 @app.route('/api/validate-medication/<drug_name>', methods=['GET'])
 def validate_medication_route(drug_name):
-    is_valid = validate_medication(drug_name)
+    # This endpoint is used for interaction checking
+    is_valid = validate_interaction_medication(drug_name)
     return jsonify({'valid': is_valid})
 
 @app.route('/api/interactions', methods=['GET'])

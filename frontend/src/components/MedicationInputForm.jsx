@@ -3,6 +3,16 @@ import { Input } from './ui/input';
 import { PlusCircle } from 'lucide-react';
 import { MedicationList } from './MedicationList';
 import { useToast } from '../components/ui/use-toast';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+} from "../components/ui/alert-dialog";
+import { useState } from 'react';
 
 export const MedicationInputForm = ({ 
   currentMedication, 
@@ -12,6 +22,7 @@ export const MedicationInputForm = ({
   removeMedication 
 }) => {
   const { toast } = useToast();
+  const [isErrorDialogOpen, setIsErrorDialogOpen] = useState(false);
 
   const validateMedication = async (medicationName) => {
     try {
@@ -50,11 +61,7 @@ export const MedicationInputForm = ({
     const isValid = await validateMedication(currentMedication);
     
     if (!isValid) {
-      toast({
-        title: "Invalid Medication",
-        description: "This medication is not found in our database. Please check the spelling or try another medication.",
-        variant: "destructive",
-      });
+      setIsErrorDialogOpen(true);
       return;
     }
 
@@ -87,6 +94,20 @@ export const MedicationInputForm = ({
         medications={medications} 
         onRemove={removeMedication} 
       />
+
+      <AlertDialog open={isErrorDialogOpen} onOpenChange={setIsErrorDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Error: Medication Not Found</AlertDialogTitle>
+            <AlertDialogDescription>
+              The medication you provided is either misspelled or not present in the database.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>OK</AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

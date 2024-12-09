@@ -8,12 +8,22 @@ import { useToast } from '../components/ui/use-toast';
 import { InteractionNav } from '../components/InteractionNav';
 import { MedicationInputForm } from '../components/MedicationInputForm';
 import { findInteractions } from '../utils/interactionUtils';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+} from "../components/ui/alert-dialog";
 
 const CheckInteractions = () => {
   const [medications, setMedications] = useState([]);
   const [currentMedication, setCurrentMedication] = useState('');
   const [showResults, setShowResults] = useState(false);
   const { toast } = useToast();
+  const [isErrorDialogOpen, setIsErrorDialogOpen] = useState(false);
 
   const { data: allMedications } = useQuery({
     queryKey: ['medications'],
@@ -25,7 +35,7 @@ const CheckInteractions = () => {
     queryFn: fetchInteractions,
   });
 
-  const addMedication = () => {
+  const addMedication = async () => {
     if (!currentMedication.trim()) {
       toast({
         title: "Error",
@@ -48,18 +58,31 @@ const CheckInteractions = () => {
       return;
     }
 
-    const newMedication = {
-      id: Date.now(),
-      name: currentMedication.trim()
-    };
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/validate-medication/${encodeURIComponent(currentMedication.trim())}`);
+      const data = await response.json();
+      
+      if (!data.valid) {
+        setIsErrorDialogOpen(true);
+        return;
+      }
 
-    setMedications(prev => [...prev, newMedication]);
-    setCurrentMedication('');
-    
-    toast({
-      title: "Success",
-      description: "Medication added to list",
-    });
+      const newMedication = {
+        id: Date.now(),
+        name: currentMedication.trim()
+      };
+
+      setMedications(prev => [...prev, newMedication]);
+      setCurrentMedication('');
+      
+      toast({
+        title: "Success",
+        description: "Medication added to list",
+      });
+    } catch (error) {
+      console.error('Error validating medication:', error);
+      setIsErrorDialogOpen(true);
+    }
   };
 
   const handleCheckInteractions = () => {
@@ -193,6 +216,19 @@ const CheckInteractions = () => {
           </p>
         </div>
       </div>
+      <AlertDialog open={isErrorDialogOpen} onOpenChange={setIsErrorDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Error: Medication Not Found</AlertDialogTitle>
+            <AlertDialogDescription>
+              The medication you provided is either misspelled or not present in the database.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>OK</AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
