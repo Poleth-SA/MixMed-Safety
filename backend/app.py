@@ -160,6 +160,43 @@ def get_all_interactions():
         print(f"Error in get_all_interactions: {e}")  # Debug log
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/medication-suggestions/<search_term>', methods=['GET'])
+def get_medication_suggestions(search_term):
+    try:
+        df = load_medication_data()
+        if df.empty:
+            return jsonify([])
+            
+        # Filter medications that start with the search term (case-insensitive)
+        search_term = search_term.lower().strip()
+        suggestions = df[df['Drug_Name'].str.lower().str.strip().str.startswith(search_term)]['Drug_Name'].unique()
+        
+        # Limit to top 10 suggestions
+        return jsonify(suggestions[:10].tolist())
+    except Exception as e:
+        print(f"Error in get_medication_suggestions: {e}")
+        return jsonify([])
+
+@app.route('/api/interaction-suggestions/<search_term>', methods=['GET'])
+def get_interaction_suggestions(search_term):
+    try:
+        df = load_interaction_data()
+        if df.empty:
+            return jsonify([])
+            
+        # Get unique medications from both DrugA_Name and DrugB_Name
+        all_medications = pd.concat([df['DrugA_Name'], df['DrugB_Name']]).unique()
+        
+        # Filter medications that start with the search term (case-insensitive)
+        search_term = search_term.lower().strip()
+        suggestions = [med for med in all_medications if med.lower().strip().startswith(search_term)]
+        
+        # Limit to top 10 suggestions
+        return jsonify(suggestions[:10])
+    except Exception as e:
+        print(f"Error in get_interaction_suggestions: {e}")
+        return jsonify([])
+
 if __name__ == '__main__':
     if not os.path.exists('data'):
         os.makedirs('data')

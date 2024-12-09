@@ -13,6 +13,7 @@ import {
   AlertDialogFooter,
   AlertDialogCancel,
 } from "../components/ui/alert-dialog";
+import { Autocomplete } from '../components/ui/autocomplete';
 
 const MedicationInfo = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -58,6 +59,17 @@ const MedicationInfo = () => {
     }
   };
 
+  const getSuggestions = async (searchTerm) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/medication-suggestions/${encodeURIComponent(searchTerm)}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching suggestions:', error);
+      return [];
+    }
+  };
+
   return (
     <div className="min-h-screen bg-custom-100 py-6 px-4 sm:py-12 sm:px-6 lg:px-8">
       <nav className="bg-white shadow-md rounded-lg mb-8 overflow-x-auto">
@@ -94,14 +106,14 @@ const MedicationInfo = () => {
           </h2>
           <div className="flex flex-col sm:flex-row items-center mb-4">
             <div className="relative flex-grow w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2">
-              <input
-                type="text"
+              <Autocomplete
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={setSearchTerm}
+                onSelect={setSearchTerm}
                 placeholder="e.g., Ibuprofen, Paracetamol..."
-                className="w-full pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-custom-500"
+                getSuggestions={getSuggestions}
+                className="w-full"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
             <Button onClick={handleSearch} className="w-full sm:w-auto bg-custom-500 text-white hover:bg-custom-600 transition-colors duration-200">
               Search Medication

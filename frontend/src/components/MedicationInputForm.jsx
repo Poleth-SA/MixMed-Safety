@@ -13,6 +13,7 @@ import {
   AlertDialogCancel,
 } from "../components/ui/alert-dialog";
 import { useState } from 'react';
+import { Autocomplete } from './ui/autocomplete';
 
 export const MedicationInputForm = ({ 
   currentMedication, 
@@ -68,18 +69,29 @@ export const MedicationInputForm = ({
     addMedication();
   };
 
+  const getSuggestions = async (searchTerm) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/interaction-suggestions/${encodeURIComponent(searchTerm)}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching suggestions:', error);
+      return [];
+    }
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4 text-custom-800">
         Check for potential risks of drug co-administrations:
       </h2>
       <div className="flex items-center gap-2 mb-4">
-        <Input
-          type="text"
+        <Autocomplete
           value={currentMedication}
-          onChange={handleInputChange}
-          onKeyPress={handleKeyPress}
+          onChange={setCurrentMedication}
+          onSelect={setCurrentMedication}
           placeholder="Enter a medication name"
+          getSuggestions={getSuggestions}
           className="flex-grow"
         />
         <Button 
