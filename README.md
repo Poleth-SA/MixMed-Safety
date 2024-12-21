@@ -1,6 +1,6 @@
-# How to Run
+# How to Run (Execute)
     1. Start the Backend Server (Flask)
-        # Navigate to your backend directory
+        # Navigate to your backend directory on terminal
         cd backend
 
         # Install Python dependencies (first time only)
@@ -20,7 +20,7 @@
         npm run dev
 
 ## Important Notes
-    - Make sure you have python and Node.js install in your system
-    - Keep both servers running while developing
-    - You'll need two terminal windows, one for each server
-    - The frontend and backend must run simultaneously for the application to work properly
+    - Make sure you installed all the dependencies.
+    - Keep both servers running.
+    - You'll need two terminal windows, one for each server.
+    - The frontend and backend must run simultaneously for the application to work properly.
