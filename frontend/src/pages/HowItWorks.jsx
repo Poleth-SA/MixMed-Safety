@@ -40,7 +40,7 @@ const HowItWorks = () => {
             <p className="text-custom-700 leading-relaxed">
               Mixmed Safety is intended to provide easy access to information related to interactions with medications. 
               It facilitates an understanding of potential risks for users who cannot obtain medical guidance immediately 
-              and makes informed choices. Another additional use is that it provides short descriptions about the purpose of each medication to allow the user to understand the action of each drug and its purpose.
+              and thus makes informed choices.
             </p>
           </section>
 
@@ -50,13 +50,13 @@ const HowItWorks = () => {
               <div className="flex items-start space-x-3">
                 <Search className="w-5 h-5 text-custom-500 mt-1" />
                 <p className="text-custom-700">
-                  <strong>Medication Search:</strong> One can search for any medication by name and will receive description about the medication to get an overview of its typical uses.
+                  <strong>Medication Search:</strong> One can search for any medication by name and description to get an overview of its typical uses.
                 </p>
               </div>
               <div className="flex items-start space-x-3">
                 <AlertTriangle className="w-5 h-5 text-custom-500 mt-1" />
                 <p className="text-custom-700">
-                  <strong>Check Interactions:</strong> Search two medications to see known interactions; their severity is Major, Moderate, Minor, or Neutral.
+                  <strong>Check Interactions:</strong> Search two medications to see known interactions; their severity is Major, Moderate, Minor, or Unknown.
                 </p>
               </div>
             </div>
@@ -67,19 +67,19 @@ const HowItWorks = () => {
             <div className="space-y-4">
               <div className="p-4 bg-red-50 rounded-md">
                 <p className="font-semibold text-red-700">Major:</p>
-                <p className="text-red-600">Avoid combining these medications because the risks are high, even deadly. Contact your doctor or any professional before Proceeding.</p>
+                <p className="text-red-600">The interactions are life-threatening and/or require medical treatment or intervention to minimize or prevent severe adverse effects.</p>
               </div>
               <div className="p-4 bg-yellow-50 rounded-md">
                 <p className="font-semibold text-yellow-700">Moderate:</p>
-                <p className="text-yellow-600">Use caution when combining these medications, There's side effects but not severe dangerous ones.</p>
+                <p className="text-yellow-600">The interactions may result in exacerbation of the disease of the patient and/or change in therapy.</p>
               </div>
               <div className="p-4 bg-green-50 rounded-md">
                 <p className="font-semibold text-green-700">Minor:</p>
-                <p className="text-green-600">These medications may have a small risk when combined. The risk are low to none to occur.</p>
+                <p className="text-green-600">The interactions would lessen the clinical effects. The manifestations may include a rise in frequency or intensity of adverse effects, but usually they do not need changes in therapy.</p>
               </div>
-              <div className="p-4 bg-blue-50 rounded-md">
-                <p className="font-semibold text-blue-500">Neutral:</p>
-                <p className="text-blue-400">There are no interactions or side effects between these medications.</p>
+              <div className="p-4 bg-gray-50 rounded-md">
+                <p className="font-semibold text-gray-700">Unknown:</p>
+                <p className="text-gray-600">The DDIs gathered from the article published in Sci Transl Med were lack of mechanism descriptions, and hence the severity classifications of these DDIs were annotated with 'Unknown'.</p>
               </div>
             </div>
           </section>
@@ -89,7 +89,45 @@ const HowItWorks = () => {
             <div className="flex items-start space-x-3">
               <Database className="w-5 h-5 text-custom-500 mt-1" />
               <p className="text-custom-700">
-              Mixmed Safety information is derived from valuable medical sources, including FDA@DRUGS ,Drugs.com, DRUGDEX, and Sci Transl Med. These websites provided crucial information for our project, which reflects the latest medical research. It is important to note that while our content is informed by these sources, the responsibility for medical care ultimately lies with the health professional.
+                Mixmed Safety information is derived from valued medical sources including{' '}
+                <a 
+                  href="https://www.fda.gov/drugs" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
+                  FDA@DRUGS
+                </a>,{' '}
+                <a 
+                  href="https://www.drugs.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
+                  Drugs.com
+                </a>,{' '}
+                and{' '}
+                <a 
+                  href="https://www.science.org/journal/stm" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
+                  Sci Transl Med
+                </a>. 
+                While we update our content to keep in step with current facts, the delivery of medical care is the 
+                prerogative and responsibility of the health professional.
+              </p>
+            </div>
+          </section>
+
+          <section className="bg-white shadow-lg rounded-lg p-6 sm:p-8">
+            <h2 className="text-2xl font-semibold text-custom-800 mb-4">Data Privacy</h2>
+            <div className="flex items-start space-x-3">
+              <Shield className="w-5 h-5 text-custom-500 mt-1" />
+              <p className="text-custom-700">
+                We value our user's privacy and do not solicit personal information in order to grant access to 
+                medication interaction data.
               </p>
             </div>
           </section>

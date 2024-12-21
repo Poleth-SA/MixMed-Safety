@@ -4,6 +4,12 @@ import { PillIcon, AlertTriangleIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Index = () => {
+  const getPath = (item) => {
+    if (item === 'Home') return '/';
+    if (item === 'About Us') return '/about';
+    return `/${item.toLowerCase().replace(/\s+/g, '-')}`;
+  };
+
   return (
     <div className="min-h-screen bg-custom-100 py-12 px-4 sm:px-6 lg:px-8">
       <nav className="bg-white shadow-md rounded-lg mb-8 sticky top-0 z-10">
@@ -13,7 +19,7 @@ const Index = () => {
               {['Home', 'Medication Info', 'Check Interactions', 'How It Works', 'About Us'].map((item, index) => (
                 <Link
                   key={index}
-                  to={index === 0 ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                  to={getPath(item)}
                   className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200
                     ${index === 0 
                       ? 'border-custom-500 text-custom-900' 
